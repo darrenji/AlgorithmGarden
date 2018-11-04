@@ -19,6 +19,8 @@ namespace AlgorithmGarden.BinarySearch
             {
                 Console.WriteLine($"{query}在{result}号位");
             }
+
+
         }
 
         //对数时间复杂度O(logn)
