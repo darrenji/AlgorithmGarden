@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgorithmGarden.BinarySearc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgorithmGarden.MergeSort", "AlgorithmGarden.MergeSort\AlgorithmGarden.MergeSort.csproj", "{3348D2F7-0C81-493C-B35E-7A685459C4C6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgorithmGarden.BubbleSort", "AlgorithmGarden.BubbleSort\AlgorithmGarden.BubbleSort.csproj", "{FE3B4846-FC87-4A33-8024-3CC681D2254C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{3348D2F7-0C81-493C-B35E-7A685459C4C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3348D2F7-0C81-493C-B35E-7A685459C4C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3348D2F7-0C81-493C-B35E-7A685459C4C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE3B4846-FC87-4A33-8024-3CC681D2254C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE3B4846-FC87-4A33-8024-3CC681D2254C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE3B4846-FC87-4A33-8024-3CC681D2254C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE3B4846-FC87-4A33-8024-3CC681D2254C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
