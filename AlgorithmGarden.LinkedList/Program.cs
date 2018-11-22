@@ -7,7 +7,28 @@ namespace AlgorithmGarden.LinkedList
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            #region 反转单链表
+            //LinkedList<string> source = new LinkedList<string>();
+            //var firstNode = source.AddFirst("a");
+            //var secondNode =  source.AddAfter(firstNode, "b");
+            //var thridNode = source.AddAfter(secondNode, "c");
+            //LinkedList<string> result = ReverseDanLianBiao.Reverse2(source);
+
+            //Console.WriteLine("反转前=====");
+            //Console.WriteLine();
+            //foreach(var item in source)
+            //{
+            //    Console.Write(item.ToString());
+            //}
+            //Console.WriteLine();
+            //Console.WriteLine("反转后=====");
+            //Console.WriteLine();
+            //foreach (var item in result)
+            //{
+            //    Console.Write(item.ToString());
+            //}
+
+            #endregion
         }
     }
 
@@ -326,5 +347,138 @@ namespace AlgorithmGarden.LinkedList
 
     #region 双向链表
     //https://gist.github.com/yetanotherchris/4960171
+    #endregion
+
+    #region 反转单链表
+    public class ReverseDanLianBiao
+    {
+        /// <summary>
+        /// 从源头链表的最后一个节点开始依次操作
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static LinkedList<string>  Reverse1(LinkedList<string> source)
+        {
+            LinkedList<string> result = new LinkedList<string>();
+
+            //先取源头链表的最后一个节点走起来
+            LinkedListNode<string> start = source.Last;
+
+            //存储目标链表的上一个节点
+            //LinkedListNode<string> lastNodeInResult = null; 
+            while (start!=null)
+            {               
+                if (start.Next==null)
+                {
+                    //每增加一个节点，该节点就会有previous, next指针，还有节点值，会使用一点内存
+                    result.AddFirst(start.Value);
+                }
+                else
+                {
+                    result.AddAfter(result.Last, start.Value);
+                }
+                //lastNodeInResult = start; //这样赋值，就会把lastnodeInResult看作是源链表的节点
+                start = start.Previous;
+            }
+
+            return result;
+        }
+
+    }
+    #endregion
+
+    #region 反转单链表，自定义链表
+    public class Node1
+    {
+        public int Data = 0;
+        public Node1 Next = null;
+    }
+
+    public static class MyLinkedList
+    {
+        public static Node1 newHead;
+
+        public static void Append(ref Node1 head, int data)
+        {
+            //考虑是否是空链表，即头节点是否为Null
+            if(head==null)
+            {
+                head = new Node1();
+                head.Data = data;
+            }
+            else
+            {
+                Node1 current = head;
+                while(current.Next!=null)
+                {
+                    current = current.Next;
+                }
+                //倒数第二个节点
+                current.Next = new Node1();
+                current.Next.Data = data;
+            }
+        }
+
+        public static void Print(Node1 head)
+        {
+            if (head == null) return;
+
+            Node1 current = head;
+            do
+            {
+                Console.Write(current.Data);
+                current = current.Next;
+
+            } while (current!=null);
+
+        }
+
+        public static void PrintRecursive(Node head)
+        {
+            if(head==null)
+            {
+                Console.WriteLine();
+                return;
+            }
+            Console.Write(head.data);
+            PrintRecursive(head.next);
+        }
+
+        public static void Reverse(ref Node1 head)
+        {
+            if (head == null) return;
+
+            Node1 prev = null;
+            Node1 current = head;
+            Node1 next = null;
+            while(current.Next!=null)
+            {
+                next = current.Next;
+
+                //改变当前节点的指针
+                current.Next = prev;
+                prev = current;
+                current = next;
+            }
+            //倒数第二个节点
+            current.Next = prev;
+            head = current;
+        }
+
+        public static void ReverseUsingRecursiong(Node head)
+        {
+            if (head == null) return;
+
+            if(head.next==null)
+            {
+                newHead = head;
+                return;
+            }
+
+            ReverseUsingRecursiong(head.next);
+            head.next.next = head;
+            head.next = null;
+        }
+    }
     #endregion
 }
