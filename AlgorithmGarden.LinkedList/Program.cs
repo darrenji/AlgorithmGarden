@@ -30,6 +30,69 @@ namespace AlgorithmGarden.LinkedList
 
             #endregion
         }
+
+        #region 删除链表中的重复元素
+        public static Node2 Insert(Node2 head, int data)
+        {
+            //先创建节点
+            Node2 p = new Node2(data);
+
+            //链表是否为空？
+            if(head==null)
+            {
+                head = p;
+            }
+            else if(head.next==null) //是否是链表的最后一个节点
+            {
+                head.next = p;
+            }
+            else
+            {
+                Node2 start = head;
+                while(start.next!=null)
+                {
+                    start = start.next;
+                }
+                start.next = p;
+            }
+
+            return head;
+        }
+
+        public static void display(Node2 head)
+        {
+            Node2 start = head;
+            while(start!=null)
+            {
+                Console.Write(start.data + " ");
+                start = start.next;
+            }
+        }
+
+        public static Node2 removeDuplicates(Node2 head)
+        {
+            //首先对参数进行判断
+            if(head!=null)
+            {
+                Node2 start = head;
+                while(start!=null)
+                {
+                    //保证当前节点的下一个节点不为null
+                    //如果当前节点的数据和下一个节点数据相等
+                    if(start.next!=null&&start.data==start.next.data)
+                    {
+                        //那就把当前节点的指针指向下下个节点
+                        start.next = start.next.next;
+                    }
+                    else
+                    {
+                        start = start.next;
+                    }
+                }
+            }
+            return head;
+        }
+        #endregion
     }
 
     #region LRU CACHE
@@ -394,90 +457,103 @@ namespace AlgorithmGarden.LinkedList
         public Node1 Next = null;
     }
 
-    public static class MyLinkedList
+    //public static class MyLinkedList
+    //{
+    //    public static Node1 newHead;
+
+    //    public static void Append(ref Node1 head, int data)
+    //    {
+    //        //考虑是否是空链表，即头节点是否为Null
+    //        if(head==null)
+    //        {
+    //            head = new Node1();
+    //            head.Data = data;
+    //        }
+    //        else
+    //        {
+    //            Node1 current = head;
+    //            while(current.Next!=null)
+    //            {
+    //                current = current.Next;
+    //            }
+    //            //倒数第二个节点
+    //            current.Next = new Node1();
+    //            current.Next.Data = data;
+    //        }
+    //    }
+
+    //    public static void Print(Node1 head)
+    //    {
+    //        if (head == null) return;
+
+    //        Node1 current = head;
+    //        do
+    //        {
+    //            Console.Write(current.Data);
+    //            current = current.Next;
+
+    //        } while (current!=null);
+
+    //    }
+
+    //    public static void PrintRecursive(Node head)
+    //    {
+    //        if(head==null)
+    //        {
+    //            Console.WriteLine();
+    //            return;
+    //        }
+    //        Console.Write(head.data);
+    //        PrintRecursive(head.next);
+    //    }
+
+    //    public static void Reverse(ref Node1 head)
+    //    {
+    //        if (head == null) return;
+
+    //        Node1 prev = null;
+    //        Node1 current = head;
+    //        Node1 next = null;
+    //        while(current.Next!=null)
+    //        {
+    //            next = current.Next;
+
+    //            //改变当前节点的指针
+    //            current.Next = prev;
+    //            prev = current;
+    //            current = next;
+    //        }
+    //        //倒数第二个节点
+    //        current.Next = prev;
+    //        head = current;
+    //    }
+
+    //    public static void ReverseUsingRecursiong(Node head)
+    //    {
+    //        if (head == null) return;
+
+    //        if(head.next==null)
+    //        {
+    //            newHead = head;
+    //            return;
+    //        }
+
+    //        ReverseUsingRecursiong(head.next);
+    //        head.next.next = head;
+    //        head.next = null;
+    //    }
+    //}
+    #endregion
+
+    #region 删除链表中的重复元素
+    public class Node2
     {
-        public static Node1 newHead;
-
-        public static void Append(ref Node1 head, int data)
+        public int data;
+        public Node2 next;
+        public Node2(int d)
         {
-            //考虑是否是空链表，即头节点是否为Null
-            if(head==null)
-            {
-                head = new Node1();
-                head.Data = data;
-            }
-            else
-            {
-                Node1 current = head;
-                while(current.Next!=null)
-                {
-                    current = current.Next;
-                }
-                //倒数第二个节点
-                current.Next = new Node1();
-                current.Next.Data = data;
-            }
-        }
-
-        public static void Print(Node1 head)
-        {
-            if (head == null) return;
-
-            Node1 current = head;
-            do
-            {
-                Console.Write(current.Data);
-                current = current.Next;
-
-            } while (current!=null);
-
-        }
-
-        public static void PrintRecursive(Node head)
-        {
-            if(head==null)
-            {
-                Console.WriteLine();
-                return;
-            }
-            Console.Write(head.data);
-            PrintRecursive(head.next);
-        }
-
-        public static void Reverse(ref Node1 head)
-        {
-            if (head == null) return;
-
-            Node1 prev = null;
-            Node1 current = head;
-            Node1 next = null;
-            while(current.Next!=null)
-            {
-                next = current.Next;
-
-                //改变当前节点的指针
-                current.Next = prev;
-                prev = current;
-                current = next;
-            }
-            //倒数第二个节点
-            current.Next = prev;
-            head = current;
-        }
-
-        public static void ReverseUsingRecursiong(Node head)
-        {
-            if (head == null) return;
-
-            if(head.next==null)
-            {
-                newHead = head;
-                return;
-            }
-
-            ReverseUsingRecursiong(head.next);
-            head.next.next = head;
-            head.next = null;
+            data = d;
+            next = null;
         }
     }
     #endregion
