@@ -10,10 +10,17 @@ namespace AlgorithmGarden.Encryption
         static void Main(string[] args)
         {
             #region md5加密返回32位16进制字符串
-            string str = "hello";
-            string result = Md5Helper.md5DigAsHex(str);
+            //string str = "hello";
+            //string result = Md5Helper.md5DigAsHex(str);
+            //Console.WriteLine(result);
+            //Console.ReadKey(); 
+            #endregion
+
+            #region base64加密解密
+            string str = "";
+            string result = Base64Helper.Base64Decode(str);
             Console.WriteLine(result);
-            Console.ReadKey(); 
+            Console.ReadKey();
             #endregion
         }
     }
@@ -100,6 +107,21 @@ namespace AlgorithmGarden.Encryption
                 strBuilder.Append(result[i].ToString("x2"));
             }
             return strBuilder.ToString();
+        }
+    }
+
+    public static class Base64Helper
+    {
+        public static string Base64Encode(string plainText)
+        {
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
+            return System.Convert.ToBase64String(plainTextBytes);
+        }
+
+        public static string Base64Decode(string base64EncodedData)
+        {
+            var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
+            return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
         }
     }
 }
