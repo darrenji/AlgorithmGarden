@@ -1,100 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace AlgorithmGarden.LinkedList
+namespace AlgorithmGarden.DataStructures.Lists
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            #region 反转单链表
-            //LinkedList<string> source = new LinkedList<string>();
-            //var firstNode = source.AddFirst("a");
-            //var secondNode =  source.AddAfter(firstNode, "b");
-            //var thridNode = source.AddAfter(secondNode, "c");
-            //LinkedList<string> result = ReverseDanLianBiao.Reverse2(source);
-
-            //Console.WriteLine("反转前=====");
-            //Console.WriteLine();
-            //foreach(var item in source)
-            //{
-            //    Console.Write(item.ToString());
-            //}
-            //Console.WriteLine();
-            //Console.WriteLine("反转后=====");
-            //Console.WriteLine();
-            //foreach (var item in result)
-            //{
-            //    Console.Write(item.ToString());
-            //}
-
-            #endregion
-        }
-
-        #region 删除链表中的重复元素
-        public static Node2 Insert(Node2 head, int data)
-        {
-            //先创建节点
-            Node2 p = new Node2(data);
-
-            //链表是否为空？
-            if(head==null)
-            {
-                head = p;
-            }
-            else if(head.next==null) //是否是链表的最后一个节点
-            {
-                head.next = p;
-            }
-            else
-            {
-                Node2 start = head;
-                while(start.next!=null)
-                {
-                    start = start.next;
-                }
-                start.next = p;
-            }
-
-            return head;
-        }
-
-        public static void display(Node2 head)
-        {
-            Node2 start = head;
-            while(start!=null)
-            {
-                Console.Write(start.data + " ");
-                start = start.next;
-            }
-        }
-
-        public static Node2 removeDuplicates(Node2 head)
-        {
-            //首先对参数进行判断
-            if(head!=null)
-            {
-                Node2 start = head;
-                while(start!=null)
-                {
-                    //保证当前节点的下一个节点不为null
-                    //如果当前节点的数据和下一个节点数据相等
-                    if(start.next!=null&&start.data==start.next.data)
-                    {
-                        //那就把当前节点的指针指向下下个节点
-                        start.next = start.next.next;
-                    }
-                    else
-                    {
-                        start = start.next;
-                    }
-                }
-            }
-            return head;
-        }
-        #endregion
-    }
-
     #region LRU CACHE
     public class Node
     {
@@ -253,7 +162,7 @@ namespace AlgorithmGarden.LinkedList
         public int Data { get; set; }
         public MyNode Next { get; set; }
     }
-    
+
     public abstract class LinkedListAbstract
     {
         public MyNode Head { get; set; }
@@ -276,7 +185,7 @@ namespace AlgorithmGarden.LinkedList
             MyNode tempHead = new MyNode { Data = value };
 
             //链表是否为空，即头部节点是否为null
-            if(Head==null)
+            if (Head == null)
             {
                 Head = tempHead;
             }
@@ -294,14 +203,14 @@ namespace AlgorithmGarden.LinkedList
 
             //先把第一个存储起来
             MyNode first = Head;
-            if(Head==null)
+            if (Head == null)
             {
                 InsertFirst(value);
             }
             else
             {
                 //方法很普通，就是一个一个问，你是不是最后一个节点，不是就到下一个
-                while(first.Next!=null) //只要不是尾部节点
+                while (first.Next != null) //只要不是尾部节点
                 {
                     first = first.Next;
                 }
@@ -317,7 +226,7 @@ namespace AlgorithmGarden.LinkedList
         public override void InsertPos(int position, int value)
         {
             MyNode first = Head;
-            for(int i=0; i < position; i++)
+            for (int i = 0; i < position; i++)
             {
                 first = first.Next;
             }
@@ -328,10 +237,10 @@ namespace AlgorithmGarden.LinkedList
 
         public override void DeleteFirst()
         {
-            if(Head!=null)
+            if (Head != null)
             {
                 MyNode nextNodeFromHead = Head.Next;
-                if(nextNodeFromHead==null)
+                if (nextNodeFromHead == null)
                 {
                     Head = null;
                 }
@@ -346,7 +255,7 @@ namespace AlgorithmGarden.LinkedList
         public override void DeleteLast()
         {
             MyNode first = Head;
-            while(first.Next.Next!=null) //倒数第三个的时候会出现不符合条件
+            while (first.Next.Next != null) //倒数第三个的时候会出现不符合条件
             {
                 first = first.Next;
             }
@@ -359,7 +268,7 @@ namespace AlgorithmGarden.LinkedList
         public override void DeletePos(int position)
         {
             MyNode first = Head;
-            for(int i=1; i< position-1;i++)
+            for (int i = 1; i < position - 1; i++)
             {
                 first = first.Next;
             }
@@ -374,7 +283,7 @@ namespace AlgorithmGarden.LinkedList
         {
             string result = string.Empty;
             MyNode first = Head;
-            while(first!=null)
+            while (first != null)
             {
                 result += "-->" + first.Data;
                 first = first.Next;
@@ -382,12 +291,12 @@ namespace AlgorithmGarden.LinkedList
             return result;
         }
 
-        
+
         public override void Reverse(MyNode head)
         {
             if (head == null) return;
 
-            if(head.Next==null)
+            if (head.Next == null)
             {
                 return;
             }
@@ -398,7 +307,7 @@ namespace AlgorithmGarden.LinkedList
         public override MyNode GetElement(int position)
         {
             MyNode first = Head;
-            for(int i=1;i<=position;i++)
+            for (int i = 1; i <= position; i++)
             {
                 first = first.Next;
             }
@@ -420,7 +329,7 @@ namespace AlgorithmGarden.LinkedList
         /// </summary>
         /// <param name="source"></param>
         /// <returns></returns>
-        public static LinkedList<string>  Reverse1(LinkedList<string> source)
+        public static LinkedList<string> Reverse1(LinkedList<string> source)
         {
             LinkedList<string> result = new LinkedList<string>();
 
@@ -429,9 +338,9 @@ namespace AlgorithmGarden.LinkedList
 
             //存储目标链表的上一个节点
             //LinkedListNode<string> lastNodeInResult = null; 
-            while (start!=null)
-            {               
-                if (start.Next==null)
+            while (start != null)
+            {
+                if (start.Next == null)
                 {
                     //每增加一个节点，该节点就会有previous, next指针，还有节点值，会使用一点内存
                     result.AddFirst(start.Value);
@@ -554,6 +463,55 @@ namespace AlgorithmGarden.LinkedList
         {
             data = d;
             next = null;
+        }
+    }
+    #endregion
+
+    #region 删除某个位置上的节点
+    public class RemoveNodeAtPosition
+    {
+        public class Node3
+        {
+            public int data;
+            public Node3 next;
+            public Node3(int d)
+            {
+                data = d;
+                next = null;
+            }
+        }
+
+        Node3 head3;
+
+        //把新的节点插入到最前面
+        public void push(int new_data)
+        {
+            Node3 new_node = new Node3(new_data);
+            new_node.next = head3;
+            head3 = new_node;
+        }
+
+        public void deleteNode(int position)
+        {
+            //链表是否为空
+            //即头部是否为Null
+            if (head3 == null) return;
+
+            //如果要删除头部节点
+            Node3 temp = head3;
+            if (position == 0)
+            {
+                //把头部节点的下一个节点赋值给头部节点
+                head3 = temp.next;
+                return;
+            }
+
+            if (temp != null) //存在头部节点
+            {
+                //遍历当前位置前面的所有节点
+            }
+
+            //考虑头部节点为null
         }
     }
     #endregion

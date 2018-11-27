@@ -1,32 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace AlgorithmGarden.BinarySearch
+namespace AlgorithmGarden.Algotithms.Search
 {
-    class Program
+    public class BinarySearchHelper 
     {
-        static void Main(string[] args)
-        {
-            int[] arr = { 1, 3, 5, 8, 9, 10, 12};
-            int length = arr.Length;
-            int query = 9;
-
-            int result = BinarySearch(arr, 0, length - 1, query);
-            if(result==-1)
-            {
-                Console.WriteLine($"找不到元素{query}");
-            }
-            else
-            {
-                Console.WriteLine($"{query}在{result}号位");
-            }
-
-
-        }
-
         //对数时间复杂度O(logn)
-        static int BinarySearch(int[] arr, int l, int r, int x)
+        public int BinarySearch(int[] arr, int l, int r, int x)
         {
-            if(r>=l)
+            if (r >= l)
             {
                 //不管是奇数还是偶数找到中间位置的方式如下
                 int middle = l + (r - 1) / 2;

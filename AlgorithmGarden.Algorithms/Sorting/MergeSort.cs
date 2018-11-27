@@ -1,36 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
-namespace AlgorithmGarden.MergeSort
+namespace AlgorithmGarden.Algotithms.Sorting
 {
-    class Program
+    public class MergeSortHelper
     {
-        static void Main(string[] args)
-        {
-            int[] numbers = { 3, 1, 2, 4, 5};
-            DoMergeSort(numbers);
-            for(var i =0;i<numbers.Length;i++)
-            {
-                Console.Write(numbers[i] + " ");
-            }
-        }
-
         //divide, dive the problem into a number of subproblems
         //conquer, conquer the subproblems by solving them recursively.
         //combine the solutions to the subproblems into the solution for the original problem
         //分而治之的思想
 
-        static void DoMergeSort(int[] numbers)
+        public void DoMergeSort(int[] numbers)
         {
             var sortedNumbers = MergeSort(numbers);
-            for(int i=0; i < sortedNumbers.Length; i++)
+            for (int i = 0; i < sortedNumbers.Length; i++)
             {
                 numbers[i] = sortedNumbers[i];
             }
         }
 
-        static int[] MergeSort(int[] numbers)
+        public int[] MergeSort(int[] numbers)
         {
             if (numbers.Length <= 1) return numbers;
 
@@ -57,13 +48,13 @@ namespace AlgorithmGarden.MergeSort
             return Merge(left, right);
         }
 
-        static int[] Merge(List<int> left, List<int> right)
+        public int[] Merge(List<int> left, List<int> right)
         {
             var result = new List<int>();
 
-            while(left.Count>0&&right.Count>0)
+            while (left.Count > 0 && right.Count > 0)
             {
-                if(left.First()<=right.First())
+                if (left.First() <= right.First())
                 {
                     result.Add(left.First());
                     left.RemoveAt(0);
@@ -75,13 +66,13 @@ namespace AlgorithmGarden.MergeSort
                 }
             }
 
-            while(NotEmpty(left))
+            while (NotEmpty(left))
             {
                 result.Add(left.First());
                 left.RemoveAt(0);
             }
 
-            while(NotEmpty(right))
+            while (NotEmpty(right))
             {
                 result.Add(right.First());
                 right.RemoveAt(0);
@@ -90,11 +81,9 @@ namespace AlgorithmGarden.MergeSort
             return result.ToArray();
         }
 
-        static bool NotEmpty(List<int> list)
+        public bool NotEmpty(List<int> list)
         {
             return list.Count > 0;
         }
     }
-
-    
 }

@@ -1,31 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace AlgorithmGarden.Encryption
+namespace AlgorithmGarden.Algorithms.Encryption
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            #region md5加密返回32位16进制字符串
-            //string str = "hello";
-            //string result = Md5Helper.md5DigAsHex(str);
-            //Console.WriteLine(result);
-            //Console.ReadKey(); 
-            #endregion
-
-            #region base64加密解密
-            string str = "";
-            string result = Base64Helper.Base64Decode(str);
-            Console.WriteLine(result);
-            Console.ReadKey();
-            #endregion
-        }
-    }
-
-    public static class Md5Helper
+    public class Md5Helper
     {
         public static readonly string myKey = "helloishouldbelongerlongerlonger";
 
@@ -99,7 +80,7 @@ namespace AlgorithmGarden.Encryption
         public static string md5DigAsHex(string plainText)
         {
             MD5 md5 = new MD5CryptoServiceProvider();
-            md5.ComputeHash(Encoding.UTF8.GetBytes(plainText));
+            md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(plainText));
             byte[] result = md5.Hash;
             StringBuilder strBuilder = new StringBuilder();
             for (int i = 0; i < result.Length; i++)
@@ -108,20 +89,26 @@ namespace AlgorithmGarden.Encryption
             }
             return strBuilder.ToString();
         }
-    }
 
-    public static class Base64Helper
-    {
-        public static string Base64Encode(string plainText)
+        public static string ConvertStringtoMD5(string strword)
         {
-            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
-            return System.Convert.ToBase64String(plainTextBytes);
+            MD5 md5 = MD5.Create();
+            byte[] inputBytes = System.Text.Encoding.BigEndianUnicode.GetBytes(strword);
+            byte[] hash = md5.ComputeHash(inputBytes);
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < hash.Length; i++)
+            {
+                sb.Append(hash[i].ToString("x2"));
+            }
+            return sb.ToString();
         }
 
-        public static string Base64Decode(string base64EncodedData)
+        public static string MD51(string source)
         {
-            var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
-            return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+            byte[] bytes = Encoding.UTF8.GetBytes(source);
+            string result = BitConverter.ToString(md5.ComputeHash(bytes));
+            return result.Replace("-", "");
         }
     }
 }

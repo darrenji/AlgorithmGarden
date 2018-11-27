@@ -1,28 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace AlgorithmGarden.BubbleSort
+namespace AlgorithmGarden.Algotithms.Sorting
 {
-    class Program
+    class BubbleSortHelper 
     {
-        static void Main(string[] args)
-        {
-            int[] arr = { 2, 5, 3, 12, 8 };
-            BubbleSort(arr);
-            foreach(var item in arr)
-            {
-                Console.Write(item + " ");
-            }
-        }
-
-        static void BubbleSort(int[] input)
+        public void BubbleSort(int[] input)
         {
             bool hasSwapped;
             do
             {
                 hasSwapped = false;
-                for(var i=0; i<input.Length-1;i++)
+                for (var i = 0; i < input.Length - 1; i++)
                 {
-                    if(input[i] > input[i+1])
+                    if (input[i] > input[i + 1])
                     {
                         var oldValue = input[i + 1];
                         input[i + 1] = input[i];
