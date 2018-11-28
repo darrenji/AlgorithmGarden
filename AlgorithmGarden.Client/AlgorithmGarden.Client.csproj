@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AlgorithmGarden.Algorithms\AlgorithmGarden.Algorithms.csproj" />
     <ProjectReference Include="..\AlgorithmGarden.DataStructures\AlgorithmGarden.DataStructures.csproj" />
   </ItemGroup>
 
