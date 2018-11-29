@@ -90,6 +90,35 @@ namespace AlgorithmGarden.Algorithms.Encryption
             return strBuilder.ToString();
         }
 
+        public static string md5AsHex(string plainText)
+        {
+            try
+            {
+                MD5 md5 = new MD5CryptoServiceProvider();
+                md5.ComputeHash(UTF8Encoding.UTF8.GetBytes(plainText));
+                byte[] result = md5.Hash;
+                StringBuilder strBuilder = new StringBuilder();
+                for (int i = 0; i < result.Length; i++)
+                {
+                    //其实就是对每个16进制数转成字符时，对小于10的数，前面如果有0去掉即可
+                    //string hexTemp = result[i].ToString("x2").TrimStart(new Char[] { '0' });
+                    string hexTemp = result[i].ToString("x2");
+                    string firstLetter = hexTemp.Substring(0, 1);
+                    if(firstLetter=="0")
+                    {
+                        hexTemp = "" + hexTemp.Substring(1);
+                    }
+                    strBuilder.Append(hexTemp);
+                }
+                return strBuilder.ToString();
+            }
+            catch (Exception ex)
+            {
+                
+                return string.Empty;
+            }
+        }
+
         public static string ConvertStringtoMD5(string strword)
         {
             MD5 md5 = MD5.Create();
@@ -110,5 +139,7 @@ namespace AlgorithmGarden.Algorithms.Encryption
             string result = BitConverter.ToString(md5.ComputeHash(bytes));
             return result.Replace("-", "");
         }
+
+        
     }
 }
