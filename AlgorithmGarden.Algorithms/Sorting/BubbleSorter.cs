@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AlgorithmGarden.Algorithms.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -74,6 +75,7 @@ namespace AlgorithmGarden.Algorithms.Sorting
 
     public class BubbleSorterHelper
     {
+
         /// <summary>
         /// 
         /// </summary>
@@ -103,6 +105,59 @@ namespace AlgorithmGarden.Algorithms.Sorting
                 }
 
                 if (!flag) break; //没有数据交换，提前退出
+            }
+        }
+    }
+
+    public static class BubbleSorter
+    {
+        public static void BubbleSort<T>(this IList<T> collection, Comparer<T> comparer = null)
+        {
+            comparer = comparer ?? Comparer<T>.Default;
+            collection.BubbleSortAscending(comparer);
+        }
+
+        public static void BubbleSortAscending<T>(this IList<T> collection, Comparer<T> comparer)
+        {
+            //有多少个元素就遍历多少次
+            for(int i=0;i<collection.Count;i++)
+            {
+                //如果为true的话就退出本次遍历
+                bool flag = false;
+
+                //最后一个元素不进行比较
+                for(int j=0;j<collection.Count-1;j++)
+                {
+                    var currentItem = collection[j];
+                    var nextItem = collection[j + 1];
+                    if(comparer.Compare(currentItem, nextItem)>0)
+                    {
+                        collection.Swap(j, j + 1);
+                        flag = true;
+                    }
+                }
+
+                if (!flag) break;
+            }
+        }
+
+        public static void BubbleSortDescending<T>(this IList<T> collection, Comparer<T> comparer)
+        {
+            //最后一个元素不管它
+            for (int i = 0; i < collection.Count-1; i++)
+            {
+                bool flag = false;
+                //比较从第二个元素开始
+                //最后几个元素不管，因为是冒泡到那的
+                for(int index=1;index<collection.Count-i;index++)
+                {
+                    var currentItem = collection[index];
+                    var lastItem = collection[index - 1];
+                    if(comparer.Compare(currentItem, lastItem)>0)
+                    {
+                        collection.Swap(index - 1, index);
+                    }
+                }
             }
         }
     }
