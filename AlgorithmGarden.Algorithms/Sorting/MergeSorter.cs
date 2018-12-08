@@ -6,6 +6,23 @@ using System.Text;
 namespace AlgorithmGarden.Algorithms.Sorting
 {
     //分而治之，递归实现
+    /*
+     96291
+     96 291
+、   96 29 1
+     9 6 2 9 1
+     69 129
+     12699
+     */
+
+    /*
+    978321
+    mid=0+5/2=2
+    978 321
+    mid=0+2/2=1  mid=3+5/2=4
+    97 8 32 1
+    9 7 8 3 2 1
+    */
 
     public static class  MergeSorter
     {
@@ -65,6 +82,15 @@ namespace AlgorithmGarden.Algorithms.Sorting
              尽管每次合并操作都需要申请额外的内存空间，但在合并完成之后，临时开辟的内存空间就被释放掉了
              在任意时刻，CPU只会执行一个函数，也就是只有一个临时的内存空间在使用
              临时内存空间最大也不会超过n个数据大小，所以空间复杂度时O(n)
+             */
+
+            /*
+             a^x=N a>0且a不等于1
+             x=loga^N
+             x是以a为底N的对数，也叫因变量
+             a是对数的底数
+             N叫真数或幂，也叫自变量
+             对数函数是指数函数的反函数
              */
         }
 
