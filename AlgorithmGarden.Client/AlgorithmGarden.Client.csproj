@@ -8,6 +8,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AlgorithmGarden.Algorithms\AlgorithmGarden.Algorithms.csproj" />
     <ProjectReference Include="..\AlgorithmGarden.DataStructures\AlgorithmGarden.DataStructures.csproj" />
+    <ProjectReference Include="..\AlgorithmGarden.Maths\AlgorithmGarden.Maths.csproj" />
   </ItemGroup>
 
 </Project>

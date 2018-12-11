@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgorithmGarden.DataStructures", "AlgorithmGarden.DataStructures\AlgorithmGarden.DataStructures.csproj", "{46300362-73B6-4727-86FF-A2134BF94267}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlgorithmGarden.DataStructures", "AlgorithmGarden.DataStructures\AlgorithmGarden.DataStructures.csproj", "{46300362-73B6-4727-86FF-A2134BF94267}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgorithmGarden.Client", "AlgorithmGarden.Client\AlgorithmGarden.Client.csproj", "{863E05CC-4033-4BFB-9403-AA3380493E3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlgorithmGarden.Client", "AlgorithmGarden.Client\AlgorithmGarden.Client.csproj", "{863E05CC-4033-4BFB-9403-AA3380493E3A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlgorithmGarden.Algorithms", "AlgorithmGarden.Algorithms\AlgorithmGarden.Algorithms.csproj", "{333A6A34-E5D6-4B8A-B8FF-2BEBE238AAC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgorithmGarden.Maths", "AlgorithmGarden.Maths\AlgorithmGarden.Maths.csproj", "{6D8E0E0E-1470-4FEE-9859-3F36675655C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{333A6A34-E5D6-4B8A-B8FF-2BEBE238AAC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{333A6A34-E5D6-4B8A-B8FF-2BEBE238AAC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{333A6A34-E5D6-4B8A-B8FF-2BEBE238AAC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D8E0E0E-1470-4FEE-9859-3F36675655C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D8E0E0E-1470-4FEE-9859-3F36675655C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D8E0E0E-1470-4FEE-9859-3F36675655C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D8E0E0E-1470-4FEE-9859-3F36675655C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
