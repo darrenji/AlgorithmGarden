@@ -3,8 +3,17 @@ using AlgorithmGarden.Algorithms.Encryption;
 using AlgorithmGarden.Algorithms.Others;
 using AlgorithmGarden.Maths;
 using AlgorithmGarden.Patterns.State;
+using ObjectsComparer;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Dynamic;
+using System.Linq;
+using System.Reflection;
+using Newtonsoft.Json;
+using System.IO;
+using System.Text;
 
 namespace AlgorithmGarden.Client
 {
@@ -32,29 +41,153 @@ namespace AlgorithmGarden.Client
             #endregion
 
             #region 深度比较
-            Test1 t1 = new Test1
-            {
-                Id = 1,
-                Name = "haha",
-                Test2 = new Test2 { Id = 1, Remark = "ok" },
-                test3s = new Dictionary<int, Test3> {
-                    { 1, new Test3{ Id=1, Price=0.1m} },
-                    { 2, new Test3{ Id=2, Price=0.2m} }
-                }
-            };
+            //Test1 t1 = new Test1
+            //{
+            //    Id = 1,
+            //    Name = "haha",
+            //    Test2 = new Test2 { Id = 1, Remark = "ok" },
+            //    test3s = new Dictionary<int, Test3> {
+            //        { 1, new Test3{ Id=1, Price=0.1m} },
+            //        { 2, new Test3{ Id=2, Price=0.2m} }
+            //    }
+            //};
 
-            Test1 t2 = new Test1
-            {
-                Id = 1,
-                Name = "haha",
-                Test2 = new Test2 { Id = 1, Remark = "ok" },
-                test3s = new Dictionary<int, Test3> {
-                    { 1, new Test3{ Id=1, Price=0.2m} },
-                    { 2, new Test3{ Id=2, Price=0.2m} }
-                }
-            };
+            //Test1 t2 = new Test1
+            //{
+            //    Id = 1,
+            //    Name = "haha",
+            //    Test2 = new Test2 { Id = 1, Remark = "ok" },
+            //    test3s = new Dictionary<int, Test3> {
+            //        { 1, new Test3{ Id=1, Price=0.2m} },
+            //        { 2, new Test3{ Id=2, Price=0.2m} }
+            //    }
+            //};
 
-            Console.WriteLine(ObjectHelper.CompareSpecial(t1, t2));
+            //Console.WriteLine(ObjectHelper.CompareSpecial(t1, t2));
+            #endregion
+
+            #region Object Comparer深度比较
+
+            //比较对象
+            //var a1 = new ClassA { Id = 1, Name = "haha" };
+            //var a2 = new ClassA { Id = 1, Name = "ha" };
+            //var comparer = new ObjectsComparer.Comparer<ClassA>();
+
+            //比较数组
+            //var a1 = new[] { 1,2,3};
+            //var a2 = new[] { 1,2};
+            //var comparer = new ObjectsComparer.Comparer<int[]>();
+
+            //比较ArrayList
+            //var a1 = new ArrayList { "1", "2" };
+            //var a2 = new ArrayList {"1"};
+            //var comparer = new ObjectsComparer.Comparer<ArrayList>();
+
+            //多维数组
+            //var a1 = new[] { new[] { 1,2} };
+            //var a2 = new[] { new[] { 1,3} };
+            //var comparer = new ObjectsComparer.Comparer<int[][]>();
+
+            //运行时对象
+            //dynamic a1 = new ExpandoObject();
+            //a1.Name = "hello";
+            //dynamic a2 = new ExpandoObject();
+            //a2.Name = "world";
+            //var comparer = new ObjectsComparer.Comparer();
+
+            //编译时对象
+            //dynamic a1 = new { Name="hi"};
+            //dynamic a2 = new { Name = "hi" };
+            //var comparer = new ObjectsComparer.Comparer();
+
+            //自定义类型的比较规则
+            //var a1 = new ClassA { Id = 1, Name = "haha" };
+            //var a2 = new ClassA { Id=1, Name="HAH"};
+            //var comparer = new ObjectsComparer.Comparer<ClassA>();
+            //comparer.AddComparerOverride<string>(new MyValueComparer());
+            //comparer.AddComparerOverride(typeof(string), new MyValueComparer());
+            //comparer.AddComparerOverride(typeof(string), new MyValueComparer(), member => !member.Name.StartsWith("Na")); //某个属性的比较不采用自定义规则
+            //comparer.AddComparerOverride<string>(new MyValueComparer(), member => !member.Name.StartsWith("Na"));
+            //comparer.AddComparerOverride(()=> new ClassA().Name, new MyValueComparer()); //把自定义规则用在某个属性上
+            //comparer.AddComparerOverride(typeof(ClassA).GetTypeInfo().GetMember("Name").First(),new MyValueComparer());
+            //comparer.AddComparerOverride(()=>new ClassA().Name, (s1, s2, parentSettings) => s1?.Length == s2?.Length, s => s.ToString()); //就地自定义规则
+
+            //例子 期望的信息
+            //var a1 = new Message {
+            //    MessageType=1,
+            //    Status=0
+            //};
+
+            //var a2 = new Message
+            //{
+            //    Id = "M12345",
+            //    DateCreated = DateTime.Now,
+            //    DateSent = DateTime.Now,
+            //    DateReceived = DateTime.Now,
+            //    MessageType = 1,
+            //    Status = 0
+            //};
+            //var comparer = new ObjectsComparer.Comparer<Message>(new ComparisonSettings {
+            //    EmptyAndNullEnumerablesEqual = true //默认false
+            //    //RecursiveComparison=true, //默认true,所有非值类型，且没有自定义比较规则，且没有实现ICompareble接口
+            //    //UseDefaultIfMemberNotExist = false, //默认false,适用于dynamic类型
+
+            //});
+            //comparer.AddComparerOverride<DateTime>(DoNotCompareValueComparer.Instance);
+            //comparer.AddComparerOverride(()=>new Message().Id, DoNotCompareValueComparer.Instance);
+            //comparer.AddComparerOverride(()=> new Error().Message, DoNotCompareValueComparer.Instance);
+
+            //例子 比较Person
+            //var _factory = new MyComparersFactory();
+            //var comparer = _factory.GetObjectsComparer<Person>();
+
+            //var a1 = new Person
+            //{
+            //    PersonId = Guid.NewGuid(),
+            //    FirstName = "John",
+            //    LastName = "Doe",
+            //    MiddleName = "F",
+            //    PhoneNumber = "111-555-8888"
+            //};
+            //var a2 = new Person
+            //{
+            //    PersonId = Guid.NewGuid(),
+            //    FirstName = "John",
+            //    LastName = "Doe",
+            //    PhoneNumber = "(111) 555 8888"
+            //};
+
+            //比较json文件
+            //var settings0Json = LoadJson("Settings0.json");
+            //var settings0 = JsonConvert.DeserializeObject<ExpandoObject>(settings0Json);
+            //var settings1Json = LoadJson("Settings1.json");
+            //var settings1 = JsonConvert.DeserializeObject<ExpandoObject>(settings1Json);
+            //var _comparer = new ObjectsComparer.Comparer(new ComparisonSettings { UseDefaultIfMemberNotExist = true });
+            ////Some fields should be ignored
+            //_comparer.AddComparerOverride("ConnectionString", DoNotCompareValueComparer.Instance);
+            //_comparer.AddComparerOverride("Email", DoNotCompareValueComparer.Instance);
+            //_comparer.AddComparerOverride("Notifications", DoNotCompareValueComparer.Instance);
+            ////Smart Modes are disabled by default. These fields are not case sensitive
+            //var disabledByDefaultComparer = new DefaultValueValueComparer<string>("Disabled", IgnoreCaseStringsValueComparer.Instance);
+            //_comparer.AddComparerOverride("SmartMode1", disabledByDefaultComparer);
+            //_comparer.AddComparerOverride("SmartMode2", disabledByDefaultComparer);
+            //_comparer.AddComparerOverride("SmartMode3", disabledByDefaultComparer);
+            ////http prefix in URLs should be ignored
+            //var urlComparer = new DynamicValueComparer<string>(
+            //    (url1, url2, settings) => url1.Trim('/').Replace(@"http://", string.Empty) == url2.Trim('/').Replace(@"http://", string.Empty));
+            //_comparer.AddComparerOverride("SomeUrl", urlComparer);
+            //_comparer.AddComparerOverride("SomeOtherUrl", urlComparer);
+            ////DataCompression is Off by default.
+            //_comparer.AddComparerOverride("DataCompression", new DefaultValueValueComparer<string>("Off", NulableStringsValueComparer.Instance));
+            ////ProcessTaskTimeout and TotalProcessTimeout fields have default values.
+            //_comparer.AddComparerOverride("ProcessTaskTimeout", new DefaultValueValueComparer<long>(100, DefaultValueComparer.Instance));
+            //_comparer.AddComparerOverride("TotalProcessTimeout", new DefaultValueValueComparer<long>(500, DefaultValueComparer.Instance));
+
+            //IEnumerable<Difference> differences;
+            //var isEqual = _comparer.Compare(settings0, settings1, out differences);
+            //Console.WriteLine(isEqual ? "相等" : string.Join(',', differences));
+
+            //例子 如果集合中数量不相等，就不会比较
             #endregion
 
             #endregion
@@ -96,8 +229,20 @@ namespace AlgorithmGarden.Client
             #endregion
 
         }
+
+        private static string LoadJson(string fileName)
+        {
+            using (StreamReader r = new StreamReader(fileName))
+            {
+                return r.ReadToEnd();
+                
+            }
+
+        }
+
     }
 
+    #region 深度比较
     [Serializable]
     public class Test1
     {
@@ -120,5 +265,92 @@ namespace AlgorithmGarden.Client
         public int Id { get; set; }
         public decimal Price { get; set; }
     }
+    #endregion
+
+    #region Object Comparer
+    public class ClassA
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public Activity Activity { get; set; }
+    }
+
+    public class Activity
+    {
+        public bool IsGo { get; set; }
+    }
+
+    public class MyValueComparer : AbstractValueComparer<string>
+    {
+        public override bool Compare(string obj1, string obj2, ComparisonSettings settings)
+        {
+            return obj1.ToLower() == obj2.ToLower();
+        }
+    }
+
+    public class Error
+    {
+        public int Id { get; set; }
+        public string Message { get; set; }
+    }
+
+    public class Message
+    {
+        public string Id { get; set; }
+        public DateTime DateCreated { get; set; }
+        public DateTime DateSent { get; set; }
+        public DateTime DateReceived { get; set; }
+        public int MessageType { get; set; }
+        public int Status { get; set; }
+        public List<Error> Errors { get; set; }
+
+        public override string ToString()
+        {
+            return $"Id:{Id}, Date:{DateCreated}, Type:{MessageType}, Status:{Status}";
+        }
+    }
+
+    public class Person
+    {
+        public Guid PersonId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string MiddleName { get; set; }
+        public string PhoneNumber { get; set; }
+        public override string ToString()
+        {
+            return $"{FirstName} {MiddleName} {LastName} ({PhoneNumber})";
+        }
+    }
+
+    public class PhoneNumberComparer:AbstractValueComparer<string>
+    {
+        public override bool Compare(string obj1, string obj2, ComparisonSettings settings)
+        {
+            return ExtractDigits(obj1) == ExtractDigits(obj2);
+        }
+
+        private string ExtractDigits(string str)
+        {
+            return string.Join(string.Empty, (str??string.Empty).ToCharArray().Where(char.IsDigit));
+        }
+    }
+
+    public class MyComparersFactory : ComparersFactory
+    {
+        public override ObjectsComparer.IComparer<T> GetObjectsComparer<T>(ComparisonSettings settings = null, BaseComparer parentComparer = null)
+        {
+            if(typeof(T) == typeof(Person))
+            {
+                var comparer = new ObjectsComparer.Comparer<Person>(settings, parentComparer, this);
+                comparer.AddComparerOverride<Guid>(DoNotCompareValueComparer.Instance);
+                comparer.AddComparerOverride(() => new Person().MiddleName, (s1, s2, parentSettings) => string.IsNullOrWhiteSpace(s1) || string.IsNullOrWhiteSpace(s2) || s1==s2);
+                comparer.AddComparerOverride(()=>new Person().PhoneNumber, new PhoneNumberComparer());
+                return (ObjectsComparer.IComparer<T>)comparer;
+            }
+            return base.GetObjectsComparer<T>(settings, parentComparer);
+        }
+    }
+    #endregion
 
 }
