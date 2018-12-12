@@ -1,6 +1,7 @@
 ﻿using AlgorithmGarden.Algorithms.Common;
 using AlgorithmGarden.Algorithms.Encryption;
 using AlgorithmGarden.Maths;
+using AlgorithmGarden.Patterns.State;
 using System;
 
 namespace AlgorithmGarden.Client
@@ -9,6 +10,7 @@ namespace AlgorithmGarden.Client
     {
         static void Main(string[] args)
         {
+            #region Algorithm
             #region 时间转换
             //string nowStr = "2018-11-28 10:29:22";
             //DateTime now = TimeConverHelper.ConvertToTimeFromStr(nowStr);
@@ -26,7 +28,13 @@ namespace AlgorithmGarden.Client
             //var result = Md5Helper.md5AsHex(str);
             //Console.WriteLine(result);
             #endregion
+            #endregion
 
+            #region DataStructure
+
+            #endregion
+
+            #region Maths
             #region 二进制十进制转换
             //Console.WriteLine(BinaryHelpers.ConvertIntToBinary(53));
             //Console.WriteLine(BinaryHelpers.ConvertBinaryToInt("110101"));
@@ -46,6 +54,18 @@ namespace AlgorithmGarden.Client
             //右移0110101 除以2的整数商
             //Console.WriteLine(53 >> 1);
             #endregion
+            #endregion
+
+            #region Design Pattern
+
+            #region state
+            Context stateContext = new Context(new StateA());
+            stateContext.Request();
+            stateContext.Request();
+            #endregion
+
+            #endregion
+
         }
     }
 }

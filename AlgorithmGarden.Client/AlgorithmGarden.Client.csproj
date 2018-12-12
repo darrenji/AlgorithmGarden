@@ -9,6 +9,7 @@
     <ProjectReference Include="..\AlgorithmGarden.Algorithms\AlgorithmGarden.Algorithms.csproj" />
     <ProjectReference Include="..\AlgorithmGarden.DataStructures\AlgorithmGarden.DataStructures.csproj" />
     <ProjectReference Include="..\AlgorithmGarden.Maths\AlgorithmGarden.Maths.csproj" />
+    <ProjectReference Include="..\AlgorithmGarden.Patterns\AlgorithmGarden.Patterns.csproj" />
   </ItemGroup>
 
 </Project>
