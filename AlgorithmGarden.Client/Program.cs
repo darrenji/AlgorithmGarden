@@ -1,8 +1,10 @@
 ﻿using AlgorithmGarden.Algorithms.Common;
 using AlgorithmGarden.Algorithms.Encryption;
+using AlgorithmGarden.Algorithms.Others;
 using AlgorithmGarden.Maths;
 using AlgorithmGarden.Patterns.State;
 using System;
+using System.Collections.Generic;
 
 namespace AlgorithmGarden.Client
 {
@@ -28,6 +30,33 @@ namespace AlgorithmGarden.Client
             //var result = Md5Helper.md5AsHex(str);
             //Console.WriteLine(result);
             #endregion
+
+            #region 深度比较
+            Test1 t1 = new Test1
+            {
+                Id = 1,
+                Name = "haha",
+                Test2 = new Test2 { Id = 1, Remark = "ok" },
+                test3s = new Dictionary<int, Test3> {
+                    { 1, new Test3{ Id=1, Price=0.1m} },
+                    { 2, new Test3{ Id=2, Price=0.2m} }
+                }
+            };
+
+            Test1 t2 = new Test1
+            {
+                Id = 1,
+                Name = "haha",
+                Test2 = new Test2 { Id = 1, Remark = "ok" },
+                test3s = new Dictionary<int, Test3> {
+                    { 1, new Test3{ Id=1, Price=0.2m} },
+                    { 2, new Test3{ Id=2, Price=0.2m} }
+                }
+            };
+
+            Console.WriteLine(ObjectHelper.CompareSpecial(t1, t2));
+            #endregion
+
             #endregion
 
             #region DataStructure
@@ -59,13 +88,37 @@ namespace AlgorithmGarden.Client
             #region Design Pattern
 
             #region state
-            Context stateContext = new Context(new StateA());
-            stateContext.Request();
-            stateContext.Request();
+            //Context stateContext = new Context(new StateA());
+            //stateContext.Request();
+            //stateContext.Request();
             #endregion
 
             #endregion
 
         }
     }
+
+    [Serializable]
+    public class Test1
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public Test2 Test2 { get; set; }
+        public IDictionary<int, Test3> test3s { get; set; }
+    }
+
+    [Serializable]
+    public class Test2
+    {
+        public int Id { get; set; }
+        public string Remark { get; set; }
+    }
+
+    [Serializable]
+    public class Test3
+    {
+        public int Id { get; set; }
+        public decimal Price { get; set; }
+    }
+
 }

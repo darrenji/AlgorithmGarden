@@ -71,6 +71,42 @@ namespace AlgorithmGarden.Algorithms.Encryption
             }
         }
 
+        private static MD5 md5Hasher;
+        private static MD5 GetMD5Hasher()
+        {
+            if(md5Hasher==null)
+            {
+                md5Hasher = MD5.Create();
+            }
+            return md5Hasher;
+        }
+
+        /// <summary>
+        /// 根据字节数组得到md5字符串
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
+        public static string MD5Encrypt(byte[] bytes)
+        {
+            if (bytes == null) return null;
+            byte[] hashBytes = GetMD5Hasher().ComputeHash(bytes);
+            string result = BitConverter.ToString(hashBytes);
+            return result.Replace("-", "").ToUpper();
+        }
+
+        /// <summary>
+        /// 32位md5字符串
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static string MD5Encrypt(string s)
+        {
+            if (string.IsNullOrEmpty(s)) return null;
+            return MD5Encrypt(EncodingHelper.EncodingStringToBytes(s));
+        }
+
+        
+
         /// <summary>
         /// md5加密返回16进制字符串
         /// </summary>
@@ -118,28 +154,6 @@ namespace AlgorithmGarden.Algorithms.Encryption
                 return string.Empty;
             }
         }
-
-        public static string ConvertStringtoMD5(string strword)
-        {
-            MD5 md5 = MD5.Create();
-            byte[] inputBytes = System.Text.Encoding.BigEndianUnicode.GetBytes(strword);
-            byte[] hash = md5.ComputeHash(inputBytes);
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < hash.Length; i++)
-            {
-                sb.Append(hash[i].ToString("x2"));
-            }
-            return sb.ToString();
-        }
-
-        public static string MD51(string source)
-        {
-            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
-            byte[] bytes = Encoding.UTF8.GetBytes(source);
-            string result = BitConverter.ToString(md5.ComputeHash(bytes));
-            return result.Replace("-", "");
-        }
-
         
     }
 }
