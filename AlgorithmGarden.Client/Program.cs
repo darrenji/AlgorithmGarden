@@ -190,6 +190,13 @@ namespace AlgorithmGarden.Client
             //例子 如果集合中数量不相等，就不会比较
             #endregion
 
+            #region 两个集合的差集
+            //List<int> list1 = new List<int> { 1, 2, 3, 5, 6 };
+            //List<int> list2 = new List<int> { 1, 3 };
+            //List<int> result = list1.Except(list2).ToList();
+            //Console.WriteLine(string.Join(',', result));
+            #endregion
+
             #endregion
 
             #region DataStructure
