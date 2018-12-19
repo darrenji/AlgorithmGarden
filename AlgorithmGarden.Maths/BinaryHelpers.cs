@@ -5,6 +5,9 @@ using System.Text;
 
 namespace AlgorithmGarden.Maths
 {
+    /// <summary>
+    /// 十进制、二进制转换
+    /// </summary>
     public class BinaryHelpers
     {
         public static string ConvertIntToBinary(int n)
