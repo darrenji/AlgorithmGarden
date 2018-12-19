@@ -5,6 +5,8 @@ using System.Text;
 namespace AlgorithmGarden.Maths
 {
     /*
+    余数
+
     今天是星期一，20天后是星期几？
     --20/7余6，所以20天后是星期天。
 
