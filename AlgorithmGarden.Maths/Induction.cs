@@ -29,4 +29,50 @@ namespace AlgorithmGarden.Maths
 
      测试：比较迭代法和归纳法的差异
      */
+
+    public class WheatResult
+    {
+        public int Current { get; set; } = 0;
+        public int Total { get; set; } = 0;
+    }
+
+    public class InductionHelper
+    {
+        public static bool Prove(int k, WheatResult result)
+        {
+            if(k==1)
+            {
+                if ((Math.Pow(2, 1) - 1) == 1)
+                {
+                    result.Current = 1;
+                    result.Total = 1;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else //n=k-1时成立，证明n=k时也成立
+            {
+                //这里的递归的前提是建立在归纳的正确之上的
+                bool previousSuccess = Prove(k - 1, result);
+                result.Current *= 2;
+                result.Total += result.Total;
+                bool currentSuccess = false;
+                if (result.Total == (Math.Pow(2, k) - 1)) currentSuccess = true;
+
+                if(currentSuccess&&previousSuccess)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+
+    }
 }

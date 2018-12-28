@@ -242,6 +242,11 @@ namespace AlgorithmGarden.Client
 
             #endregion
 
+            #region 递归
+            //DiGuiHelper.Get(10, new List<long>());
+
+            #endregion
+
             #endregion
 
             #region Design Pattern
