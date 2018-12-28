@@ -204,6 +204,7 @@ namespace AlgorithmGarden.Client
             #endregion
 
             #region Maths
+
             #region 二进制十进制转换
             //Console.WriteLine(BinaryHelpers.ConvertIntToBinary(53));
             //Console.WriteLine(BinaryHelpers.ConvertBinaryToInt("110101"));
@@ -223,6 +224,24 @@ namespace AlgorithmGarden.Client
             //右移0110101 除以2的整数商
             //Console.WriteLine(53 >> 1);
             #endregion
+
+            #region 比较迭代法和归纳法的差异
+            //int grid = 63;
+
+            //Stopwatch watch1 = new Stopwatch();
+            //watch1.Start();
+            //Console.WriteLine($"前n个元素之和是：{Iterative1.GetNumOfGrids(63)}");
+            //Console.WriteLine($"耗时：{watch1.ElapsedMilliseconds}"); //28
+            //watch1.Stop();
+
+            //Stopwatch watch2 = new Stopwatch();
+            //watch2.Start();
+            //Console.WriteLine($"前n个元素之和是：{(long)(Math.Pow(2, grid))-1}");
+            //Console.WriteLine($"耗时：{watch2.ElapsedMilliseconds}");//0
+            //watch2.Stop();
+
+            #endregion
+
             #endregion
 
             #region Design Pattern
@@ -235,6 +254,8 @@ namespace AlgorithmGarden.Client
 
             #endregion
 
+
+
         }
 
         private static string LoadJson(string fileName)
@@ -242,7 +263,7 @@ namespace AlgorithmGarden.Client
             using (StreamReader r = new StreamReader(fileName))
             {
                 return r.ReadToEnd();
-                
+
             }
 
         }
@@ -330,7 +351,7 @@ namespace AlgorithmGarden.Client
         }
     }
 
-    public class PhoneNumberComparer:AbstractValueComparer<string>
+    public class PhoneNumberComparer : AbstractValueComparer<string>
     {
         public override bool Compare(string obj1, string obj2, ComparisonSettings settings)
         {
@@ -339,7 +360,7 @@ namespace AlgorithmGarden.Client
 
         private string ExtractDigits(string str)
         {
-            return string.Join(string.Empty, (str??string.Empty).ToCharArray().Where(char.IsDigit));
+            return string.Join(string.Empty, (str ?? string.Empty).ToCharArray().Where(char.IsDigit));
         }
     }
 
@@ -347,12 +368,12 @@ namespace AlgorithmGarden.Client
     {
         public override ObjectsComparer.IComparer<T> GetObjectsComparer<T>(ComparisonSettings settings = null, BaseComparer parentComparer = null)
         {
-            if(typeof(T) == typeof(Person))
+            if (typeof(T) == typeof(Person))
             {
                 var comparer = new ObjectsComparer.Comparer<Person>(settings, parentComparer, this);
                 comparer.AddComparerOverride<Guid>(DoNotCompareValueComparer.Instance);
-                comparer.AddComparerOverride(() => new Person().MiddleName, (s1, s2, parentSettings) => string.IsNullOrWhiteSpace(s1) || string.IsNullOrWhiteSpace(s2) || s1==s2);
-                comparer.AddComparerOverride(()=>new Person().PhoneNumber, new PhoneNumberComparer());
+                comparer.AddComparerOverride(() => new Person().MiddleName, (s1, s2, parentSettings) => string.IsNullOrWhiteSpace(s1) || string.IsNullOrWhiteSpace(s2) || s1 == s2);
+                comparer.AddComparerOverride(() => new Person().PhoneNumber, new PhoneNumberComparer());
                 return (ObjectsComparer.IComparer<T>)comparer;
             }
             return base.GetObjectsComparer<T>(settings, parentComparer);
