@@ -6,7 +6,7 @@ namespace AlgorithmGarden.Algorithms.Common
 {
     //假设有n个台阶，每次跨1个或2个台阶，这n个台阶有多少种走法？
     //问题可以提炼为：f(n)，意思是给你n个台阶，通过神奇的计算，你给我多少种走法
-    //不考虑那个多，先只考虑第一步
+    //不考虑那么多，先只考虑第一步
     //如果第一步跨一个台阶，后面的可能性是：f(n-1)
     //如果第一步跨两个台阶，后面的可能性是：f(n-2)
     //所以，f(n)= f(n-1) + f(n-2)
@@ -35,7 +35,7 @@ namespace AlgorithmGarden.Algorithms.Common
             return FindPossibilitiesWhenClimb(n - 1) + FindPossibilitiesWhenClimb(n - 2);
         }
 
-        //以上的写法会又一个问题需要解决
+        //以上的写法会有一个问题需要解决
         //f(5) = f(3) + f(4)
         //f(4) = f(3) + f(2)
         //多次用到了f(3)
@@ -58,7 +58,7 @@ namespace AlgorithmGarden.Algorithms.Common
             }
 
             int ret = FindPossibilitiesWhenClimb1(n - 1) + FindPossibilitiesWhenClimb1(n-2);
-            HasSolvedList.Add(n, n);
+            HasSolvedList.Add(n, ret);
             return ret;
         }
 

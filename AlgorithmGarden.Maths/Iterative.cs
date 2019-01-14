@@ -64,7 +64,7 @@ namespace AlgorithmGarden.Maths
 
     /*
      计算某个大于1的正整数的平方根？
-     等价于：在1-n之间找一个数等于n的平方根
+     等价于：在1-n之间找一个数的平方等于n
      */
     public class Iterative2
     {

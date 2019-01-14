@@ -14,6 +14,7 @@ using System.Reflection;
 using Newtonsoft.Json;
 using System.IO;
 using System.Text;
+using AlgorithmGarden.Algorithms.Sorting;
 
 namespace AlgorithmGarden.Client
 {
@@ -197,6 +198,17 @@ namespace AlgorithmGarden.Client
             //Console.WriteLine(string.Join(',', result));
             #endregion
 
+            #region Selection sort
+            int[] arr = { 46, 52, 21, 22, 11};
+            int n = arr.Length;
+            Console.WriteLine("排序前");
+            SelectionSort.Print(arr, n);
+            Console.WriteLine();
+            Console.WriteLine("排序后");
+            SelectionSort.SelectionSortGo(arr, n);
+            SelectionSort.Print(arr, n);
+            #endregion
+
             #endregion
 
             #region DataStructure
@@ -263,15 +275,6 @@ namespace AlgorithmGarden.Client
 
         }
 
-        private static string LoadJson(string fileName)
-        {
-            using (StreamReader r = new StreamReader(fileName))
-            {
-                return r.ReadToEnd();
-
-            }
-
-        }
 
     }
 
