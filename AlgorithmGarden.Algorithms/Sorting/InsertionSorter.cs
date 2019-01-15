@@ -4,6 +4,10 @@ using System.Text;
 
 namespace AlgorithmGarden.Algorithms.Sorting
 {
+    public class InsertionSortSimple
+    {
+
+    }
     /*
      往一组数据中插入数据，如何保持有序呢？
      遍历数组，找到应该插入的位置
@@ -25,6 +29,7 @@ namespace AlgorithmGarden.Algorithms.Sorting
 
     public class InsertionSorterHelper
     {
+        //n表示数组的长度
         public void InsertionSort(int[] a, int n)
         {
             if (n <= 1) return;
@@ -35,7 +40,7 @@ namespace AlgorithmGarden.Algorithms.Sorting
             {
                 //5
                 int value = a[i]; //i=1
-                int j = i - 1; //j=0
+                int j = i - 1; //j=0，j是游标，表示排序数组的最后一个元素所在的位置
                 for(; j>=0; --j) //已排序区间，遍历次数和未排序区间的元素位置有关系
                 {
                     //每次把未排序区间的第一个元素取出来

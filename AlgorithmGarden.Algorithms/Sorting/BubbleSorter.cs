@@ -5,6 +5,57 @@ using System.Text;
 
 namespace AlgorithmGarden.Algorithms.Sorting
 {
+
+    public class BubbleSortSimple
+    {
+        public static void BubbleSort(int[] arr)
+        {
+            int i, j, temp;
+            for(i=0;i<arr.Length;i++)
+            {
+                for(j=0;j<arr.Length-1-i;j++)
+                {
+                    if(arr[j]>arr[j+1])
+                    {
+                        temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+                }
+            }
+        }
+
+        //如果没有交换的时候应该及时退出循环
+        public static void BubbleSort1(int[] arr)
+        {
+            int i, j, temp;
+            for (i = 0; i < arr.Length; i++)
+            {
+                bool IsSwapped = false;
+                for (j = 0; j < arr.Length - 1 - i; j++)
+                {
+                   
+                    if (arr[j] > arr[j + 1])
+                    {
+                        temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                        IsSwapped = true;
+                    }
+                }
+
+                if(!IsSwapped)
+                {
+                    break;
+                }
+            }
+        }
+
+        //最差时间复杂度O(n^2)
+        //最好时间复杂度O(n)
+        //平均时间复杂度O(n^2)
+        //空间复杂度O(1) 数组要了一块内存空间
+    }
     /* 怎么来评价排序的效率呢？
      * 考虑最好、最差、平均复杂度，因为原始数据有些有序、有些无序，情况不一样
      * 当n趋向于无穷大的时候，会把常数、系数、低阶不考虑，但数据量很小的时候这些就需要考虑了
