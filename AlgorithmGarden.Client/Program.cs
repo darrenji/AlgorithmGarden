@@ -23,7 +23,7 @@ namespace AlgorithmGarden.Client
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(FanZhuan.Reverse(1200));
+            Console.WriteLine(_342.IsPowerOfFourBinary(16));
 
             Console.ReadKey();
 
