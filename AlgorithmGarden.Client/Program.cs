@@ -23,14 +23,7 @@ namespace AlgorithmGarden.Client
     {
         static void Main(string[] args)
         {
-            var watcher = new Stopwatch();
-            watcher.Start();
-
-            int[] arr = new int[] { 1, 2, 4 };
-            Console.WriteLine(_268.GetMissingNumberWithSum(arr, 4));
-
-            watcher.Stop();
-            Console.WriteLine($"execution time {watcher.ElapsedMilliseconds}");
+            Console.WriteLine(FanZhuan.Reverse(1200));
 
             Console.ReadKey();
 
