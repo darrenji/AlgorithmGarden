@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2042
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28902.138
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlgorithmGarden.DataStructures", "AlgorithmGarden.DataStructures\AlgorithmGarden.DataStructures.csproj", "{46300362-73B6-4727-86FF-A2134BF94267}"
 EndProject
@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlgorithmGarden.Algorithms"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlgorithmGarden.Maths", "AlgorithmGarden.Maths\AlgorithmGarden.Maths.csproj", "{6D8E0E0E-1470-4FEE-9859-3F36675655C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgorithmGarden.Patterns", "AlgorithmGarden.Patterns\AlgorithmGarden.Patterns.csproj", "{A6E2CEC5-96D8-4934-828E-26F92BCC90BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlgorithmGarden.Patterns", "AlgorithmGarden.Patterns\AlgorithmGarden.Patterns.csproj", "{A6E2CEC5-96D8-4934-828E-26F92BCC90BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgorithmGarden.LeetCode", "AlgorithmGarden.LeetCode\AlgorithmGarden.LeetCode.csproj", "{C2F98CFD-0B27-469A-BF5D-0F73D37BED01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{A6E2CEC5-96D8-4934-828E-26F92BCC90BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6E2CEC5-96D8-4934-828E-26F92BCC90BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6E2CEC5-96D8-4934-828E-26F92BCC90BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2F98CFD-0B27-469A-BF5D-0F73D37BED01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2F98CFD-0B27-469A-BF5D-0F73D37BED01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2F98CFD-0B27-469A-BF5D-0F73D37BED01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2F98CFD-0B27-469A-BF5D-0F73D37BED01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
